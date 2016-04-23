@@ -24,6 +24,7 @@
     "machineDir": "machines/",
     "machines": [
       "app-details",
+      "user-details",
       "register-merchant",
       "send-confirmation"
     ]

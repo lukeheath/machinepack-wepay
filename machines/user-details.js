@@ -1,25 +1,19 @@
 module.exports = {
 
-  friendlyName: 'Application Details',
+  friendlyName: 'User Details',
 
 
-  description: 'Get details about a WePay application.',
+  description: 'Get details about a user by access token.',
 
 
-  extendedDescription: 'Lookup details about a WePay application by client id and secret',
+  extendedDescription: 'This call allows you to lookup the details of the user associated with the access token you are using to make the call.',
 
 
   inputs: {
 
-    clientId: {
-      example: 123456,
-      description: 'The integer client ID issued to the app, found on your application\'s dashboard',
-      required: true
-    },
-
-    clientSecret: {
-      example: '6446c521bd',
-      description: 'The string client secret issued to the app, found on your application\'s dashboard',
+    accessToken: {
+      example: '604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184',
+      description: 'The string access token of the user you want to send confirmation to.',
       required: true
     },
 
@@ -39,12 +33,12 @@ module.exports = {
     },
 
     success: {
-      "api_version":567235,
-      "client_id":"604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184",
-      "state":"BEARER",
-      "status":1209600,
-      "theme_object": {},
-      "gaq_domains": ''
+      "user_id":12345,
+      "first_name":"Bill",
+      "last_name":"Clerico",
+      "email":"api@wepay.com",
+      "state":"registered",
+      "callback_uri":"https://www.everribbon.com/ipn/12345"
     }
   },
 
@@ -58,8 +52,7 @@ module.exports = {
 
     // wepay request settings
     var wepay_settings = {
-      'client_id': inputs.clientId,
-      'client_secret': inputs.clientSecret
+      'access_token': inputs.accessToken
       // 'api_version': 'API_VERSION'
     }
 
@@ -74,12 +67,7 @@ module.exports = {
       wp.use_staging();
     }
 
-    wp.call('/app',
-    {
-      'client_id': inputs.clientId,
-      'client_secret': inputs.clientSecret
-    },
-    function(response) {
+    wp.call('/user', {}, function onResponse(response) {
 
       var responseObj = JSON.parse(String(response));
 
