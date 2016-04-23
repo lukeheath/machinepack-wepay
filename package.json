@@ -25,6 +25,7 @@
     "machines": [
       "app-details",
       "user-details",
+      "user-callback",
       "register-merchant",
       "send-confirmation"
     ]
