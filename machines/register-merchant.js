@@ -6,7 +6,7 @@ module.exports = {
   description: 'Register a new merchant account that can accept payments.',
 
 
-  extendedDescription: 'This machine registers a new merchant accounts with WePay and returns an access token.',
+  extendedDescription: 'Register a new merchant accounts with WePay and returns an access token.',
 
 
   inputs: {

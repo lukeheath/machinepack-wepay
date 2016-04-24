@@ -3,10 +3,10 @@ module.exports = {
   friendlyName: 'Create Account',
 
 
-  description: 'Creates a new payment account.',
+  description: 'Create a new payment account.',
 
 
-  extendedDescription: 'Creates a new payment account for the user associated with the access token used to make this call.',
+  extendedDescription: 'Create a new payment account for the user associated with the access token used to make this call.',
 
 
   inputs: {

@@ -3,10 +3,10 @@ module.exports = {
   friendlyName: 'User Details',
 
 
-  description: 'Get details about a user by access token.',
+  description: 'Look up details about a user by access token.',
 
 
-  extendedDescription: 'This call allows you to lookup the details of the user associated with the access token you are using to make the call.',
+  extendedDescription: 'Look up the details of the user associated with the access token you are using to make the call.',
 
 
   inputs: {

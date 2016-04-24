@@ -6,7 +6,7 @@ module.exports = {
   description: 'Get details about a WePay application.',
 
 
-  extendedDescription: 'Lookup details about a WePay application by client id and secret',
+  extendedDescription: 'Look up details about a WePay application by client id and secret',
 
 
   inputs: {

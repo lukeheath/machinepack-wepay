@@ -3,7 +3,7 @@ module.exports = {
   friendlyName: 'User Callback URI',
 
 
-  description: 'Allows you to add a callback_uri to the user object..',
+  description: 'Add callback_uri to user.',
 
 
   extendedDescription: 'If you add a callback_uri you will receive IPNs with the user_id each time the user revokes their access_token or is deleted.',
