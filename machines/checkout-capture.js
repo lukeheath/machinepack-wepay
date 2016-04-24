@@ -1,32 +1,31 @@
 module.exports = {
 
-  friendlyName: 'Delete Account',
+  friendlyName: 'Capture Checkout',
 
 
-  description: 'Delete an existing payment account.',
+  description: 'Capture a checkout that was not auto captured.',
 
 
-  extendedDescription: 'Delete the account specified. The user associated with the access token used must have permission to delete the account. An account may not be deleted if it has a balance or pending payments.',
+  extendedDescription: 'If auto_capture was set to false when the checkout was created, you will need to make this call to release funds to the account. Until you make this call the money will be held by WePay and if you do not capture the funds within 14 days then the payment will be automatically cancelled or refunded. You can only make this call if the checkout is in state \'reserved\'.',
 
 
   inputs: {
 
     accessToken: {
       example: '604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184',
-      description: 'The string access token of the user with permission to delete this account.',
+      description: 'The string access token of the user you want to capture a payment account for.',
       required: true
     },
 
     accountId: {
-      example: 12345,
-      description: 'The unique ID of the account you want to delete.',
-      required: true
+      example: 1234,
+      description: 'ID of the account you want to capture a charge to.'
     },
 
-    reason: {
-      example: 'No longer being used.',
-      description: 'Reason for deleting the account.',
-      required: false
+    checkoutId: {
+      example: 12345,
+      description: 'The unique ID of the checkout to be captured.',
+      required: true
     },
 
     useProduction: {
@@ -45,8 +44,7 @@ module.exports = {
     },
 
     success: {
-      "account_id":12345,
-      "state":"deleted"
+      "checkout_id":649945633
     }
   },
 
@@ -65,12 +63,13 @@ module.exports = {
     };
 
     // wepay request params
+    // requred
     var wepay_params = {
-      'account_id': inputs.accountId,
-      'reason': inputs.reason || undefined
+      'checkout_id': inputs.checkoutId,
+      'account_id': inputs.accountId
     };
 
-    // Instantiate new wepay instance with options
+    // Instantiate new wepay instance with settings
     var wp = new wepay(wepay_options);
 
     // Set API environment
@@ -81,7 +80,7 @@ module.exports = {
       wp.use_staging();
     }
 
-    wp.call('/account/delete', wepay_params, function onResponse(response) {
+    wp.call('/checkout/create', wepay_params, function onResponse(response) {
 
       // Convert buffer respond to JSON object
       var responseObj = JSON.parse(String(response));

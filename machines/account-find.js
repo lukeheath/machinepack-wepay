@@ -3,7 +3,7 @@ module.exports = {
   friendlyName: 'Find Accounts',
 
 
-  description: 'Find existing payment accounts.',
+  description: 'Find existing payment accounts. No params for all accounts by access token.',
 
 
   extendedDescription: 'Search the accounts of the user associated with the access token used to make the call.',
@@ -20,7 +20,7 @@ module.exports = {
     name: {
       example: 'My Payment Account',
       description: 'The name of the account you want to search for.',
-      required: true
+      required: false
     },
 
     referenceId: {
@@ -113,25 +113,15 @@ module.exports = {
     var wepay_options = {
       'access_token': inputs.accessToken
       // 'api_version': 'API_VERSION'
-    }
+    };
 
     // wepay request params
     // requred
-    var wepay_params = {}
-
-    // Optional inputs
-
-    if(inputs.name){
-      wepay_params.name = inputs.name;
-    }
-
-    if(inputs.referenceId){
-      wepay_params.reference_id = inputs.referenceId;
-    }
-
-    if(inputs.sortOrder){
-      wepay_params.sort_order = inputs.sortOrder;
-    }
+    var wepay_params = {
+      'name': inputs.name || undefined,
+      'reference_id': inputs.referenceId || undefined,
+      'sort_order': inputs.sortOrder || undefined
+    };
 
     // Instantiate new wepay instance with settings
     var wp = new wepay(wepay_options);
@@ -151,7 +141,7 @@ module.exports = {
 
       // Catch error
       if(responseObj.error){
-        return exits.error(responseObj)
+        return exits.error(responseObj);
       }
       // Else success
       else{
@@ -160,7 +150,5 @@ module.exports = {
 
     });
   },
-
-
 
 };

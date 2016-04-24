@@ -26,15 +26,16 @@
       "app-details",
       "user-details",
       "user-callback",
-      "register-merchant",
-      "send-confirmation",
+      "merchant-register",
+      "merchant-confirm",
       "account-create",
       "account-details",
       "account-find",
       "account-modify",
       "account-delete",
       "account-get-uri",
-      "checkout-create"
+      "checkout-create",
+      "checkout-capture"
     ]
   }
 }

@@ -54,13 +54,13 @@ module.exports = {
     },
 
     gaqDomains: {
-      example: '["mydomain.com", "myotherdomain.com"]',
+      example: ["mydomain.com", "myotherdomain.com"],
       description: 'An array of Google Analytics domains associated with the account. See the analytics tutorial for more details.',
       required: false
     },
 
     themeObject: {
-      example: '{"theme_id":12345,"name":"API Theme for API App: My Sample Application","primary_color":"FFFFFF","secondary_color":"000000","background_color":"004C64","button_color":"0084A0"}',
+      example: {"theme_id":12345,"name":"API Theme for API App: My Sample Application","primary_color":"FFFFFF","secondary_color":"000000","background_color":"004C64","button_color":"0084A0"},
       description: 'The theme structure (a JSON object, not a JSON serialized string) you want to be used for account\'s flows and emails. See https://stage.wepay.com/deeloper/reference/structures#theme.',
       required: false
     },
@@ -72,7 +72,7 @@ module.exports = {
     },
 
     countryOptions: {
-      example: '{"debit_opt_in":true|false}',
+      example: {"debit_opt_in":true|false},
       description: '{"debit_opt_in":true|false}. Used for Canadian accounts only.',
       required: false
     },
@@ -117,50 +117,21 @@ module.exports = {
     var wepay_options = {
       'access_token': inputs.accessToken
       // 'api_version': 'API_VERSION'
-    }
+    };
 
     // wepay request params
-    // requred
     var wepay_params = {
-      'account_id': inputs.accountId
-    }
-
-    // Optional inputs
-
-    if(inputs.name){
-      wepay_params.name = inputs.name;
-    }
-
-    if(inputs.description){
-      wepay_params.description = inputs.description;
-    }
-
-    if(inputs.referenceId){
-      wepay_params.reference_id = inputs.referenceId;
-    }
-    if(inputs.imageUri){
-      wepay_params.image_uri = inputs.image_uri;
-    }
-
-    if(inputs.gaqDomains){
-      wepay_params.gaq_domains = inputs.gaqDomains;
-    }
-
-    if(inputs.themeObject){
-      wepay_params.theme_object = inputs.themeObject;
-    }
-
-    if(inputs.callbackUri){
-      wepay_params.callback_uri = inputs.callbackUri;
-    }
-
-    if(inputs.countryOptions){
-      wepay_params.country_options = inputs.countryOptions;
-    }
-
-    if(inputs.feeScheduleSlot){
-      wepay_params.fee_schedule_slot = inputs.feeScheduleSlot;
-    }
+      'account_id': inputs.accountId,
+      'name': inputs.name || undefined,
+      'description': inputs.description || undefined,
+      'reference_id': inputs.referenceId || undefined,
+      'image_uri': inputs.imageUri || undefined,
+      'gaq_domains': inputs.gaqDomains || undefined,
+      'theme_object': inputs.themeObject || undefined,
+      'callback_uri': inputs.callbackUri || undefined,
+      'country_options': inputs.countryOptions || undefined,
+      'fee_schedule_slot': inputs.feeScheduleSlot || undefined
+    };
 
     // Instantiate new wepay instance with settings
     var wp = new wepay(wepay_options);
@@ -180,7 +151,7 @@ module.exports = {
 
       // Catch error
       if(responseObj.error){
-        return exits.error(responseObj)
+        return exits.error(responseObj);
       }
       // Else success
       else{
@@ -189,7 +160,5 @@ module.exports = {
 
     });
   },
-
-
 
 };

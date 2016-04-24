@@ -117,13 +117,13 @@ module.exports = {
     var wepay_options = {
       'access_token': inputs.accessToken
       // 'api_version': 'API_VERSION'
-    }
+    };
 
     // wepay request params
     // requred
     var wepay_params = {
       'account_id': inputs.accountId
-    }
+    };
 
     // Instantiate new wepay instance with settings
     var wp = new wepay(wepay_options);
@@ -143,7 +143,7 @@ module.exports = {
 
       // Catch error
       if(responseObj.error){
-        return exits.error(responseObj)
+        return exits.error(responseObj);
       }
       // Else success
       else{

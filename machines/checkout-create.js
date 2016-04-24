@@ -72,7 +72,7 @@ module.exports = {
     },
 
     autoCapture: {
-      example: true,
+      example: false,
       description: 'A boolean value (true or false) default is true. If set to false then the payment will not automatically be released to the account and will be held by WePay in payment state "reserved". To release funds to the account you must call /checkout/capture. If you do not capture the funds within 14 days then the payment will be automatically cancelled or refunded.',
       required: false
     },
@@ -142,60 +142,23 @@ module.exports = {
     };
 
     // wepay request params
-    // requred
     var wepay_params = {
       'account_id': inputs.accountId,
       'short_description': inputs.shortDescription,
       'type': inputs.type,
       'amount': inputs.amount,
       'currency': inputs.currency,
+      'long_description': inputs.longDescription || undefined,
+      'email_message': inputs.emailMessage || undefined,
+      'fee': inputs.fee || undefined,
+      'callback_uri': inputs.callbackUri || undefined,
+      'auto_capture': inputs.autoCapture ? true : false, // Booleans need ternary or false evaluated to undefined
+      'reference_id': inputs.referenceId || undefined,
+      'unique_id': inputs.uniqueId || undefined,
+      'hosted_checkout': inputs.hostedCheckout || undefined,
+      'payment_method': inputs.paymentMethod || undefined,
+      'delivery_type': inputs.deliveryType || undefined
     };
-
-    // Optional inputs
-
-    if(inputs.long_description){
-      wepay_params.long_description = inputs.longDescription;
-    }
-
-    if(inputs.longDescription){
-      wepay_params.description = inputs.description;
-    }
-
-    if(inputs.emailMessage){
-      wepay_params.email_message = inputs.emailMessage;
-    }
-
-    if(inputs.fee){
-      wepay_params.fee = inputs.fee;
-    }
-
-    if(inputs.callbackUri){
-      wepay_params.callback_uri = inputs.callbackUri;
-    }
-
-    if(inputs.autoCapture){
-      wepay_params.auto_capture = inputs.autoCapture;
-    }
-
-    if(inputs.referenceId){
-      wepay_params.reference_id = inputs.referenceId;
-    }
-
-    if(inputs.uniqueId){
-      wepay_params.unique_id = inputs.uniqueId;
-    }
-
-    if(inputs.hostedCheckout){
-      wepay_params.hosted_checkout = inputs.hostedCheckout;
-    }
-
-    if(inputs.paymentMethod){
-      wepay_params.payment_method = inputs.paymentMethod;
-    }
-
-    if(inputs.deliveryType){
-      wepay_params.delivery_type = inputs.deliveryType;
-    }
 
     // Instantiate new wepay instance with settings
     var wp = new wepay(wepay_options);

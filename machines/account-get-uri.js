@@ -62,23 +62,15 @@ module.exports = {
     var wepay_options = {
       'access_token': inputs.accessToken
       // 'api_version': 'API_VERSION'
-    }
+    };
 
     // wepay request params
     // requred
     var wepay_params = {
-      'account_id': inputs.accountId
-    }
-
-    // Optional inputs
-
-    if(inputs.mode){
-      wepay_params.mode = inputs.mode;
-    }
-
-    if(inputs.redirectUri){
-      wepay_params.redirect_uri = inputs.redirectUri;
-    }
+      'account_id': inputs.accountId,
+      'mode': inputs.mode || undefined,
+      'redirect_uri': inputs.redirectUri || undefined
+    };
 
     // Instantiate new wepay instance with options
     var wp = new wepay(wepay_options);
@@ -98,7 +90,7 @@ module.exports = {
 
       // Catch error
       if(responseObj.error){
-        return exits.error(responseObj)
+        return exits.error(responseObj);
       }
       // Else success
       else{
@@ -107,7 +99,5 @@ module.exports = {
 
     });
   },
-
-
 
 };

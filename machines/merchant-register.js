@@ -1,6 +1,6 @@
 module.exports = {
 
-  friendlyName: 'Register Merchant',
+  friendlyName: 'Merchant Register',
 
 
   description: 'Register a new merchant account that can accept payments.',
@@ -113,7 +113,7 @@ module.exports = {
       'client_id': inputs.clientId,
       'client_secret': inputs.clientSecret
       // 'api_version': 'API_VERSION'
-    }
+    };
 
     // wepay request params
     var wepay_params = {
@@ -125,17 +125,10 @@ module.exports = {
       'last_name': inputs.lastName,
       'original_ip': inputs.originalIp,
       'original_device': inputs.originalDevice,
-      'tos_acceptance_time': inputs.tosAcceptanceTime 
-    }
-
-    // Optional inputs
-    if(inputs.redirectUrl){
-      wepay_params.redirect_uri = inputs.redirectUri;
-    }
-
-    if(inputs.callbackUri){
-      wepay_params.callback_uri = inputs.callbackUri;
-    }
+      'tos_acceptance_time': inputs.tosAcceptanceTime,
+      'direct_uri': inputs.redirectUri || undefined,
+      'callback_uri': inputs.callbackUri || undefined
+    };
 
     // Instantiate new wepay instance with settings
     var wp = new wepay(wepay_options);
@@ -155,7 +148,7 @@ module.exports = {
 
       // Catch error
       if(responseObj.error){
-        return exits.error(responseObj)
+        return exits.error(responseObj);
       }
       // Else success
       else{
