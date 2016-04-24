@@ -33,7 +33,8 @@
       "account-find",
       "account-modify",
       "account-delete",
-      "account-get-uri"
+      "account-get-uri",
+      "checkout-create"
     ]
   }
 }
