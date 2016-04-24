@@ -1,7 +1,7 @@
 {
   "name": "machinepack-wepay",
   "version": "0.1.0",
-  "description": "Communicate with WePay API to create merchants, charge payers, etc.",
+  "description": "Communicate with WePay API to register merchants, charge payers, etc.",
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
   },
@@ -27,7 +27,9 @@
       "user-details",
       "user-callback",
       "register-merchant",
-      "send-confirmation"
+      "send-confirmation",
+      "account-create",
+      "account-details"
     ]
   }
 }
