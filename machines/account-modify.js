@@ -1,12 +1,12 @@
 module.exports = {
 
-  friendlyName: 'Create Account',
+  friendlyName: 'Modify Account',
 
 
-  description: 'Create a new payment account.',
+  description: 'Modify an existing payment account.',
 
 
-  extendedDescription: 'Create a new payment account for the user associated with the access token used to make this call.',
+  extendedDescription: 'Update the specified properties. If reference_id is passed, it must be unique for the user/application pair.',
 
 
   inputs: {
@@ -17,16 +17,22 @@ module.exports = {
       required: true
     },
 
-    name: {
-      example: 'My Payment Account',
-      description: 'The name of the account you want to create.',
+    accountId: {
+      example: 12345,
+      description: 'The unique ID of the account you want to modify.',
       required: true
     },
 
+    name: {
+      example: 'My new payment account name',
+      description: 'The name for the account.',
+      required: false
+    },
+
     description: {
-      example: 'My payment account is for money.',
-      description: 'The description of the account you want to create.',
-      required: true
+      example: 'My new payment account description',
+      description: 'The description for the account.',
+      required: false
     },
 
     useProduction: {
@@ -41,12 +47,6 @@ module.exports = {
       required: false
     },
 
-    type: {
-      example: 'business',
-      description: 'The type of account you are creating. Can be "nonprofit", "business", or "personal".',
-      required: false
-    },
-
     imageUri: {
       example: 'http://s3.amazonaws.com/myphoto.jpg',
       description: 'The uri for an image that you want to use for the accounts icon. This image will be used in the co-branded checkout process.',
@@ -55,7 +55,7 @@ module.exports = {
 
     gaqDomains: {
       example: '["mydomain.com", "myotherdomain.com"]',
-      description: 'An array of Google Analytics domains associated with the account. See the analytics tutorial (https://stage.wepay.com/developer/reference/analytics) for more details.',
+      description: 'An array of Google Analytics domains associated with the account. See the analytics tutorial for more details.',
       required: false
     },
 
@@ -65,27 +65,9 @@ module.exports = {
       required: false
     },
 
-    mcc: {
-      example: 7392,
-      description: 'The mcc code that is relevant to the type of account this is. See the mcc reference page (https://stage.wepay.com/developer/reference/mcc) for more information.',
-      required: false
-    },
-
     callbackUri: {
       example: 'https://www.baggins.com/callback',
       description: 'The uri that will receive IPNs for this account. You will receive an IPN whenever the account is verified or deleted.',
-      required: false
-    },
-
-    country: {
-      example: 'US',
-      description: 'The account\'s country of origin 2-letter ISO code (e.g. "US" or "CA")',
-      required: false
-    },
-
-    currencies: {
-      example: '["USD"]',
-      description: 'Array of supported currency strings for this account (e.g. ["USD"]) Both "USD" and "CAD" are currently supported. Only one currency string per account is allowed at this time.',
       required: false
     },
 
@@ -140,19 +122,22 @@ module.exports = {
     // wepay request params
     // requred
     var wepay_params = {
-      'name': inputs.name,
-      'description': inputs.description
+      'account_id': inputs.accountId
     }
 
     // Optional inputs
+
+    if(inputs.name){
+      wepay_params.name = inputs.name;
+    }
+
+    if(inputs.description){
+      wepay_params.description = inputs.description;
+    }
+
     if(inputs.referenceId){
       wepay_params.reference_id = inputs.referenceId;
     }
-    
-    if(inputs.type){
-      wepay_params.type = inputs.type;
-    }
-
     if(inputs.imageUri){
       wepay_params.image_uri = inputs.image_uri;
     }
@@ -165,20 +150,8 @@ module.exports = {
       wepay_params.theme_object = inputs.themeObject;
     }
 
-    if(inputs.mcc){
-      wepay_params.mcc = inputs.mcc;
-    }
-
     if(inputs.callbackUri){
       wepay_params.callback_uri = inputs.callbackUri;
-    }
-
-    if(inputs.country){
-      wepay_params.country = inputs.country;
-    }
-
-    if(inputs.currencies){
-      wepay_params.currencies = inputs.currencies;
     }
 
     if(inputs.countryOptions){
@@ -200,7 +173,7 @@ module.exports = {
       wp.use_staging();
     }
 
-    wp.call('/account/create', wepay_params, function onResponse(response) {
+    wp.call('/account/modify', wepay_params, function onResponse(response) {
 
       // Convert buffer respond to JSON object
       var responseObj = JSON.parse(String(response));

@@ -1,26 +1,38 @@
 module.exports = {
 
-  friendlyName: 'Account Details',
+  friendlyName: 'Find Accounts',
 
 
-  description: 'Look up the details of a payment account on WePay.',
+  description: 'Find existing payment accounts.',
 
 
-  extendedDescription: 'Look up the details of a payment account on WePay. The payment account must belong to the user associated with the access token used to make the call.',
+  extendedDescription: 'Search the accounts of the user associated with the access token used to make the call.',
 
 
   inputs: {
 
     accessToken: {
       example: '604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184',
-      description: 'The string access token of the user you want to create a payment account for.',
+      description: 'The string access token of the user you want to find a payment account for.',
       required: true
     },
 
-    accountId: {
-      example: 12345,
-      description: 'The string access token of the user you want to create a payment account for.',
+    name: {
+      example: 'My Payment Account',
+      description: 'The name of the account you want to search for.',
       required: true
+    },
+
+    referenceId: {
+      example: '1234abcd',
+      description: 'The reference ID of the account you are searching for.',
+      required: false
+    },
+
+    sortOrder: {
+      example: 'DESC',
+      description: 'Sort the results of the search by time created. Use "DESC" for most recent to least recent. Use "ASC" for least recent to most recent. Defaults to "DESC".',
+      required: false
     },
 
     useProduction: {
@@ -61,7 +73,6 @@ module.exports = {
           "reserved_amount":0,
           "disputed_amount":0,
           "withdrawal_period":"daily",
-          "withdrawal_type":"ach",
           "withdrawal_next_time":1370112217,
           "withdrawal_bank_name":"WellsFargo XXXXX3102"
         }
@@ -75,32 +86,17 @@ module.exports = {
         }
       ],
       "image_uri": "https:\/\/stage.wepay.com\/img\/logo.png",
-      "action_reasons":[
+      "action_reasons": [
         "bank_account",
         "kyc"
       ],
-      "supported_card_types":[
-         "visa",
-         "mastercard",
-         "american_express",
-         "discover",
-         "jcb",
-         "diners_club"
-      ],
-      "disabled_reasons":[
+      "disabled_reasons": [
         "country_not_supported",
         "fraud",
         "high_risk_chargeback",
         "no_settlement_path",
         "reported_user",
         "tos_violation"
-      ],
-      "fee_schedule":[
-        {
-            "slot": 9,
-            "description": "2.9% + $0.30",
-            "currency": "USD"
-        }
       ]
     }
   },
@@ -121,8 +117,20 @@ module.exports = {
 
     // wepay request params
     // requred
-    var wepay_params = {
-      'account_id': inputs.accountId
+    var wepay_params = {}
+
+    // Optional inputs
+
+    if(inputs.name){
+      wepay_params.name = inputs.name;
+    }
+
+    if(inputs.referenceId){
+      wepay_params.reference_id = inputs.referenceId;
+    }
+
+    if(inputs.sortOrder){
+      wepay_params.sort_order = inputs.sortOrder;
     }
 
     // Instantiate new wepay instance with settings
@@ -136,7 +144,7 @@ module.exports = {
       wp.use_staging();
     }
 
-    wp.call('/account', wepay_params, function onResponse(response) {
+    wp.call('/account/find', wepay_params, function onResponse(response) {
 
       // Convert buffer respond to JSON object
       var responseObj = JSON.parse(String(response));

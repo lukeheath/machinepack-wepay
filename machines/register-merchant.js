@@ -67,7 +67,8 @@ module.exports = {
 
     useProduction: {
       example: false,
-      description: 'Use WePay production API - payments will be charged. Defaults to WePay staging - payments are not charged.'
+      description: 'Use WePay production API - payments will be charged. Defaults to WePay staging - payments are not charged.',
+      required: false
     },
 
     redirectUri: {

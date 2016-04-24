@@ -29,7 +29,9 @@
       "register-merchant",
       "send-confirmation",
       "account-create",
-      "account-details"
+      "account-details",
+      "account-find",
+      "account-modify"
     ]
   }
 }
