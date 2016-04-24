@@ -31,7 +31,8 @@
       "account-create",
       "account-details",
       "account-find",
-      "account-modify"
+      "account-modify",
+      "account-delete"
     ]
   }
 }
