@@ -1,12 +1,12 @@
 module.exports = {
 
-  friendlyName: 'Merchant Register',
+  friendlyName: 'User Register',
 
 
-  description: 'Register a new merchant account that can accept payments.',
+  description: 'Register a new user account that can accept payments.',
 
 
-  extendedDescription: 'Register a new merchant accounts with WePay and returns an access token.',
+  extendedDescription: 'Register a new user account with WePay and returns an access token.',
 
 
   inputs: {
@@ -93,10 +93,13 @@ module.exports = {
     },
 
     success: {
-      "user_id":567235,
-      "access_token":"604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184",
-      "token_type":"BEARER",
-      "expires_in":1209600
+      description: 'User successfully registered.',
+      example: {
+        "user_id":567235,
+        "access_token":"604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184",
+        "token_type":"BEARER",
+        "expires_in":1209600
+      }
     }
   },
 

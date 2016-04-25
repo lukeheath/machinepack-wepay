@@ -13,13 +13,8 @@ module.exports = {
 
     accessToken: {
       example: '604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184',
-      description: 'The string access token of the user you want to capture a payment account for.',
+      description: 'The string access token of the user you want to capture a payment for.',
       required: true
-    },
-
-    accountId: {
-      example: 1234,
-      description: 'ID of the account you want to capture a charge to.'
     },
 
     checkoutId: {
@@ -44,7 +39,11 @@ module.exports = {
     },
 
     success: {
-      "checkout_id":649945633
+      description: 'Checkout successfully captured.',
+      example: {
+        "checkout_id":12345,
+        "state":"captured"
+      }
     }
   },
 
@@ -65,8 +64,7 @@ module.exports = {
     // wepay request params
     // requred
     var wepay_params = {
-      'checkout_id': inputs.checkoutId,
-      'account_id': inputs.accountId
+      'checkout_id': inputs.checkoutId
     };
 
     // Instantiate new wepay instance with settings
@@ -80,7 +78,7 @@ module.exports = {
       wp.use_staging();
     }
 
-    wp.call('/checkout/create', wepay_params, function onResponse(response) {
+    wp.call('/checkout/capture', wepay_params, function onResponse(response) {
 
       // Convert buffer respond to JSON object
       var responseObj = JSON.parse(String(response));

@@ -13,7 +13,7 @@ module.exports = {
 
     accessToken: {
       example: '604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184',
-      description: 'The string access token of the user you want to create a payment account for.',
+      description: 'The string access token of the user accepting the checkout payment.',
       required: true
     },
 
@@ -73,7 +73,8 @@ module.exports = {
 
     autoCapture: {
       example: false,
-      description: 'A boolean value (true or false) default is true. If set to false then the payment will not automatically be released to the account and will be held by WePay in payment state "reserved". To release funds to the account you must call /checkout/capture. If you do not capture the funds within 14 days then the payment will be automatically cancelled or refunded.',
+      description: 'A boolean value (true or false) default is true.',
+      extendedDescription: 'A boolean value (true or false) default is true. If set to false then the payment will not automatically be released to the account and will be held by WePay in payment state "reserved". To release funds to the account you must call /checkout/capture. If you do not capture the funds within 14 days then the payment will be automatically cancelled or refunded.',
       required: false
     },
 
@@ -97,7 +98,8 @@ module.exports = {
 
     paymentMethod: {
       example: {"type": "credit_card","credit_card": {"id": 1334}},
-      description: 'Use this to pay using previously acquired payment information, such as a preapproval or a credit card. Send either hosted_checkout or payment_method parameter. Do not send both parameters at the same time. If neither parameter is specified, default behavior will be hosted_checkout.',
+      description: 'Use this to pay using previously acquired payment information, such as a preapproval or a credit card.',
+      extendedDescription: 'Use this to pay using previously acquired payment information, such as a preapproval or a credit card. Send either hosted_checkout or payment_method parameter. Do not send both parameters at the same time. If neither parameter is specified, default behavior will be hosted_checkout.',
       required: false
     },
 
@@ -123,7 +125,63 @@ module.exports = {
     },
 
     success: {
-      "checkout_id":649945633
+      description: 'Checkout created',
+      example: {
+        "checkout_id": 649945633,
+        "account_id": 1548718026,
+        "type": "donation",
+        "short_description": "test",
+        "currency": "USD",
+        "amount": 20,
+        "state": "new",
+        "soft_descriptor": "WPY*Wolverine",
+        "auto_capture": true,
+        "create_time": 1439582388,
+        "delivery_type": "point_of_sale",
+        "long_description": "test",
+        "callback_uri": "http://www.test.com",
+        "reference_id": "null",
+        "fee": {
+          "app_fee": 1,
+          "fee_payer": "payer",
+          "processing_fee": 0
+        },
+        "gross": 0,
+        "chargeback": {
+          "amount_charged_back": 0,
+          "dispute_uri": "null"
+        },
+        "refund": {
+          "amount_refunded": 0,
+          "refund_reason": "null"
+        },
+        "hosted_checkout": {
+          "checkout_uri": "http://wepay.com/api/iframe/649945633/51e59317/api_checkout?iframe=1",
+          "redirect_uri": "http://www.test.com",
+          "shipping_fee": 2,
+          "require_shipping": true,
+          "shipping_address": "null",
+          "theme_object": {
+            "theme_id": 96914023,
+            "name": "test",
+            "primary_color": "ffffff",
+            "secondary_color": "000000",
+            "background_color": "ffffff",
+            "button_color": "000000"
+          },
+          "mode": "iframe"
+        },
+        "payer": {
+          "name": "null",
+          "email": "null",
+          "home_address": "null"
+        },
+        "npo_information":{
+        "legal_name": "org name",
+        "ein": "343644743"
+        },
+        "payment_error": "null"
+      }
     }
   },
 

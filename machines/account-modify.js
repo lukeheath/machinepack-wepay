@@ -93,15 +93,18 @@ module.exports = {
     },
 
     success: {
-      "name":"Example Account",
-      "description":"This is just an example WePay account.",
-      "reference_id":"abc123",
-      "image_uri":"https://stage.wepay.com/img/logo.png",
-      "country":"US",
-      "currencies":[
-        "USD"
-      ],
-      "fee_schedule_slot": 9
+      description: 'Account updated.',
+      example: {
+        "name":"Example Account",
+        "description":"This is just an example WePay account.",
+        "reference_id":"abc123",
+        "image_uri":"https://stage.wepay.com/img/logo.png",
+        "country":"US",
+        "currencies":[
+          "USD"
+        ],
+        "fee_schedule_slot": 9
+      }
     }
   },
 

@@ -33,12 +33,15 @@ module.exports = {
     },
 
     success: {
-      "user_id":12345,
-      "first_name":"Bill",
-      "last_name":"Clerico",
-      "email":"api@wepay.com",
-      "state":"registered",
-      "callback_uri":"https://www.everribbon.com/ipn/12345"
+      description: 'User found.',
+      example: {
+        "user_id":12345,
+        "first_name":"Bill",
+        "last_name":"Clerico",
+        "email":"api@wepay.com",
+        "state":"registered",
+        "callback_uri":"https://www.everribbon.com/ipn/12345"
+      }
     }
   },
 

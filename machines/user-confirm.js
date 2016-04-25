@@ -1,9 +1,9 @@
 module.exports = {
 
-  friendlyName: 'Merchant Confirmation Send',
+  friendlyName: 'User Confirmation Send',
 
 
-  description: 'Send confirmation email to users registered with Register Merchant machine.',
+  description: 'Send confirmation email to users registered with Register User machine.',
 
 
   extendedDescription: 'For users who were registered via the /user/register call, this API call must be used to send the registration confirmation email. This call can also be used later to resend the registration confirmation email as needed.',
@@ -39,11 +39,14 @@ module.exports = {
     },
 
     success: {
-      "user_id":12345,
-      "first_name":"Bill",
-      "last_name":"Clerico",
-      "email":"api@wepay.com",
-      "state":"registered"
+      description: 'User confirmation email sent.',
+      example: {
+        "user_id":12345,
+        "first_name":"Bill",
+        "last_name":"Clerico",
+        "email":"api@wepay.com",
+        "state":"registered"
+      }
     }
   },
 

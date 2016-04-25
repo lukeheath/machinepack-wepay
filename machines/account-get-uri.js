@@ -45,8 +45,11 @@ module.exports = {
     },
 
     success: {
-      "account_id":12345,
-      "uri":"http://stage.wepay.com/api/account_update_uri/12345"
+      description: 'Retrieve account URI',
+      example: {
+        "account_id":12345,
+        "uri":"http://stage.wepay.com/api/account_update_uri/12345"
+      }
     }
   },
 

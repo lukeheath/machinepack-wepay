@@ -39,12 +39,15 @@ module.exports = {
     },
 
     success: {
-      "api_version":567235,
-      "client_id":"604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184",
-      "state":"BEARER",
-      "status":1209600,
-      "theme_object": {},
-      "gaq_domains": ''
+      description: 'Successfully retrieved application Details.',
+      example: {
+        "api_version":567235,
+        "client_id":"604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184",
+        "state":"BEARER",
+        "status":1209600,
+        "theme_object": {},
+        "gaq_domains": ''
+      } 
     }
   },
 

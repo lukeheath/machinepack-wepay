@@ -1,7 +1,7 @@
 {
   "name": "machinepack-wepay",
-  "version": "0.1.1",
-  "description": "Communicate with WePay API to register merchants, charge payers, etc.",
+  "version": "0.1.2",
+  "description": "Communicate with WePay API to register users, create accounts and accept payments.",
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
   },
@@ -27,8 +27,8 @@
       "app-details",
       "user-details",
       "user-callback",
-      "merchant-register",
-      "merchant-confirm",
+      "user-register",
+      "user-confirm",
       "account-create",
       "account-details",
       "account-find",
@@ -36,7 +36,9 @@
       "account-delete",
       "account-get-uri",
       "checkout-create",
-      "checkout-capture"
+      "checkout-capture",
+      "checkout-find",
+      "checkout-refund"
     ]
   }
 }

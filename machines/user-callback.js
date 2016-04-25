@@ -13,7 +13,7 @@ module.exports = {
 
     accessToken: {
       example: '604f39f41e364951ced74070c6e8bfa49d346cdfee6191b03c2c2d9c9cda9184',
-      description: 'The string access token of the user you want to send confirmation to.',
+      description: 'The string access token of the user you want IPNs for.',
       required: true
     },
 
@@ -39,12 +39,15 @@ module.exports = {
     },
 
     success: {
-      "user_id":12345,
-      "first_name":"Bill",
-      "last_name":"Clerico",
-      "email":"api@wepay.com",
-      "state":"registered",
-      "callback_uri":"https://www.everribbon.com/ipn/12345"
+      description: 'User callback URI set.',
+      example: {
+        "user_id":12345,
+        "first_name":"Bill",
+        "last_name":"Clerico",
+        "email":"api@wepay.com",
+        "state":"registered",
+        "callback_uri":"https://www.everribbon.com/ipn/12345"
+      }
     }
   },
 

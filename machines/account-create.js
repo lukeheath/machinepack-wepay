@@ -111,15 +111,72 @@ module.exports = {
     },
 
     success: {
-      "name":"Example Account",
-      "description":"This is just an example WePay account.",
-      "reference_id":"abc123",
-      "image_uri":"https://stage.wepay.com/img/logo.png",
+      description: 'Successfully created payment account.',
+      example: {
+      "account_id":12345,
+      "name":"Example account",
+      "state":"active",
+      "description":"this account is just an example.",
+      "owner_user_id":539291,
+      "reference_id":"123abc",
+      "type":"personal",
+      "create_time":1367958263,
+      "disablement_time":"null",
       "country":"US",
       "currencies":[
         "USD"
       ],
-      "fee_schedule_slot": 9
+      "balances":[
+        {
+          "currency":"USD",
+          "balance":390.50,
+          "incoming_pending_amount":635.30,
+          "outgoing_pending_amount":210.00,
+          "reserved_amount":0,
+          "disputed_amount":0,
+          "withdrawal_period":"daily",
+          "withdrawal_type":"ach",
+          "withdrawal_next_time":1370112217,
+          "withdrawal_bank_name":"WellsFargo XXXXX3102"
+        }
+      ],
+      "statuses":[
+        {
+          "currency":"USD",
+          "incoming_payments_status":"ok",
+          "outgoing_payments_status":"ok",
+          "account_review_status":"pending"
+        }
+      ],
+      "image_uri": "https:\/\/stage.wepay.com\/img\/logo.png",
+      "action_reasons":[
+        "bank_account",
+        "kyc"
+      ],
+      "supported_card_types":[
+         "visa",
+         "mastercard",
+         "american_express",
+         "discover",
+         "jcb",
+         "diners_club"
+      ],
+      "disabled_reasons":[
+        "country_not_supported",
+        "fraud",
+        "high_risk_chargeback",
+        "no_settlement_path",
+        "reported_user",
+        "tos_violation"
+      ],
+      "fee_schedule":[
+        {
+          "slot": 9,
+          "description": "2.9% + $0.30",
+          "currency": "USD"
+        }
+      ]
+      }
     }
   },
 

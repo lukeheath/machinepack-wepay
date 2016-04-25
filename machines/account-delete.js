@@ -45,8 +45,11 @@ module.exports = {
     },
 
     success: {
-      "account_id":12345,
-      "state":"deleted"
+      description: 'Successfully deleted payment account.',
+      example: {
+        "account_id":12345,
+        "state":"deleted"
+      }
     }
   },
 
