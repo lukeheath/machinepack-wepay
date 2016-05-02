@@ -1,6 +1,6 @@
 {
   "name": "machinepack-wepay",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Communicate with WePay API to register users, create accounts and accept payments.",
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"

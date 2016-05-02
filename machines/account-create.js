@@ -60,7 +60,7 @@ module.exports = {
     },
 
     themeObject: {
-      example: {"theme_id":12345,"name":"API Theme for API App: My Sample Application","primary_color":"FFFFFF","secondary_color":"000000","background_color":"004C64","button_color":"0084A0"},
+      example: {},
       description: 'The theme structure (a JSON object, not a JSON serialized string) you want to be used for account\'s flows and emails. See https://stage.wepay.com/deeloper/reference/structures#theme.',
       required: false
     },
@@ -90,7 +90,7 @@ module.exports = {
     },
 
     countryOptions: {
-      example: {"debit_opt_in":true|false},
+      example: {},
       description: '{"debit_opt_in":true|false}. Used for Canadian accounts only.',
       required: false
     },

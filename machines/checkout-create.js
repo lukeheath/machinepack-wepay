@@ -54,13 +54,13 @@ module.exports = {
     },
 
     emailMessage: {
-      example: {"to_payee": "test","to_payer": "test"},
+      example: {},
       description: 'Specifies a short message to send to the payee and payer when a checkout is successful. More at https://stage.wepay.com/developer/reference/structures#email_message',
       required: false
     },
 
     fee: {
-      example: {"app_fee": 20,"fee_payer": "payer"},
+      example: {},
       description: 'Specify whether an app fee will be collected and who should pay the app fee. For EMV transactions, this parameter must be present. More at https://stage.wepay.com/developer/reference/structures#fee',
       required: false
     },
@@ -91,13 +91,13 @@ module.exports = {
     },
 
     hostedCheckout: {
-      example: {"redirect_uri": "http://www.test.com","fallback_uri": "http://www.test.com"},
+      example: {},
       description: 'Use this to have payers enter payment information on a WePay hosted checkout URL. Send either hosted_checkout or payment_method parameter. Do not send both parameters at the same time. If neither parameter is specified, default behavior will be hosted_checkout. Full example object at https://stage.wepay.com/developer/reference/structures#hosted_checkout.',
       required: false
     },
 
     paymentMethod: {
-      example: {"type": "credit_card","credit_card": {"id": 1334}},
+      example: {},
       description: 'Use this to pay using previously acquired payment information, such as a preapproval or a credit card.',
       extendedDescription: 'Use this to pay using previously acquired payment information, such as a preapproval or a credit card. Send either hosted_checkout or payment_method parameter. Do not send both parameters at the same time. If neither parameter is specified, default behavior will be hosted_checkout.',
       required: false
