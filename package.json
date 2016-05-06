@@ -38,7 +38,9 @@
       "checkout-create",
       "checkout-capture",
       "checkout-find",
-      "checkout-refund"
+      "checkout-refund",
+      "checkout-details",
+      "checkout-cancel"
     ]
   }
 }
